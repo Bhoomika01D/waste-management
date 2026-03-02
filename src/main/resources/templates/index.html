@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack Waste Management</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>♻️ EcoTrack</h1>
+            <p>Smart Waste Management System</p>
+        </header>
+
+        <!-- Flash Messages for Feedback -->
+        <div class="flash-messages">
+            <div th:if="${success}" class="alert success" th:text="${success}"></div>
+            <div th:if="${error}" class="alert error" th:text="${error}"></div>
+        </div>
+
+        <main class="grid">
+            <!-- Section 1: Add Waste -->
+            <section class="card">
+                <h2>Add Waste</h2>
+                <form action="/add" method="POST">
+                    <div class="form-group">
+                        <label for="waste_type">Waste Type</label>
+                        <select name="waste_type" id="waste_type" required>
+                            <option value="Plastic">Plastic</option>
+                            <option value="Organic">Organic</option>
+                            <option value="Paper">Paper</option>
+                            <option value="Glass">Glass</option>
+                            <option value="Metal">Metal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" name="weight" id="weight" step="0.1" placeholder="e.g. 5.5" required>
+                    </div>
+                    <button type="submit" class="btn primary">Add to Inventory</button>
+                </form>
+            </section>
+
+            <!-- Section 2: Inventory -->
+            <section class="card">
+                <div class="card-header">
+                    <h2>Current Inventory</h2>
+                    <form action="/pickup" method="POST">
+                        <button type="submit" class="btn secondary">Schedule Pickup</button>
+                    </form>
+                </div>
+                <ul class="inventory-list">
+                    <li th:each="entry : ${inventory}" class="inventory-item">
+                        <span th:text="${entry.key}">Type</span> <span th:text="${entry.value} + ' kg'">0 kg</span>
+                    </li>
+                    <li th:if="${inventory.empty}" class="empty-state">Inventory is empty.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Maven
+target/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+
+# Python (legacy)
+__pycache__/
+*.pyc

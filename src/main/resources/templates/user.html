@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, User!</h1>
+    
+    <div th:if="${message}" style="color: green; font-weight: bold;">
+        <p th:text="${message}"></p>
+    </div>
+
+    <h3>Schedule Waste Pickup</h3>
+    <form action="/pickup" method="post">
+        <button type="submit">Schedule Pickup Now</button>
+    </form>
+
+    <br/><br/>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+</body>
+</html>
