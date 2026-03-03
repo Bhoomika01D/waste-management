@@ -2,14 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Admin Dashboard</h1>
-    <p>Welcome, Administrator. Here you can view waste management statistics.</p>
-    
-    <br/><br/>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
+    <div class="container">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <p>Welcome, Administrator. Here you can view waste management statistics.</p>
+        </header>
+        
+        <div class="card">
+            <h2>System Statistics</h2>
+            <p class="empty-state">No statistics available yet.</p>
+        </div>
+        
+        <form th:action="@{/logout}" method="post" style="text-align: center; margin-top: 2rem;">
+            <button type="submit" class="btn secondary">Logout</button>
+        </form>
+    </div>
 </body>
 </html>

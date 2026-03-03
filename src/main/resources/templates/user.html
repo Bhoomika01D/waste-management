@@ -2,22 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User Dashboard</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome, User!</h1>
-    
-    <div th:if="${message}" style="color: green; font-weight: bold;">
-        <p th:text="${message}"></p>
+    <div class="container">
+        <header>
+            <h1>Welcome, User!</h1>
+            <p>Manage your waste pickups efficiently.</p>
+        </header>
+        
+        <div th:if="${message}" class="alert success" th:text="${message}"></div>
+
+        <div class="card">
+            <h2>Schedule Waste Pickup</h2>
+            <p>Ready for a pickup? Click the button below to notify our team.</p>
+            <form action="/pickup" method="post">
+                <button type="submit" class="btn primary">Schedule Pickup Now</button>
+            </form>
+        </div>
+
+        <form th:action="@{/logout}" method="post" style="text-align: center; margin-top: 2rem;">
+            <button type="submit" class="btn secondary">Logout</button>
+        </form>
     </div>
-
-    <h3>Schedule Waste Pickup</h3>
-    <form action="/pickup" method="post">
-        <button type="submit">Schedule Pickup Now</button>
-    </form>
-
-    <br/><br/>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
 </body>
 </html>
